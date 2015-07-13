@@ -1,6 +1,6 @@
 Elo Rating
 =================
-[![Test Coverage](http://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://codeclimate.com/github/inklabs/kommerce-core)
+[![Test Coverage](http://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://codeclimate.com/github/pdt256/elo)
 [![Build Status](https://travis-ci.org/pdt256/elo.svg?branch=master)](https://travis-ci.org/pdt256/elo)
 [![Downloads](https://img.shields.io/packagist/dt/pdt256/elo.svg)](https://packagist.org/packages/pdt256/elo)
 [![License](https://img.shields.io/packagist/l/pdt256/elo.svg)](https://github.com/pdt256/elo/blob/master/LICENSE.txt)
