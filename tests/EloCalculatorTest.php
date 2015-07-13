@@ -34,7 +34,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getOddsData
      */
-    public function testGetOdds($ratingA, $ratingB, $expectedScoreA, $expectedScoreB)
+    public function testGetOdds($ratingA, $ratingB, $expectedOddsA, $expectedOddsB)
     {
         $participantA = new Participant;
         $participantA->setRating($ratingA);
@@ -45,7 +45,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $eloCalculator = new EloCalculator;
         $odds = $eloCalculator->getOdds($participantA, $participantB);
 
-        $this->assertEquals($expectedScoreA, $odds[0], null, FLOAT_DELTA);
-        $this->assertEquals($expectedScoreB, $odds[1], null, FLOAT_DELTA);
+        $this->assertEquals($expectedOddsA, $odds[0], null, FLOAT_DELTA);
+        $this->assertEquals($expectedOddsB, $odds[1], null, FLOAT_DELTA);
     }
 }

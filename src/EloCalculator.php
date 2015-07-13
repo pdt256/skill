@@ -10,10 +10,10 @@ class EloCalculator implements EloCalculatorInterface
 
     public function getOdds(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
-        $expectedScoreA = $this->getIndividualOdds($participantB->getRating(), $participantA->getRating());
-        $expectedScoreB = 1 - $expectedScoreA;
+        $oddsA = $this->getIndividualOdds($participantB->getRating(), $participantA->getRating());
+        $oddsB = 1 - $oddsA;
 
-        return [$expectedScoreA, $expectedScoreB];
+        return [$oddsA, $oddsB];
     }
 
     /**
