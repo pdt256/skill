@@ -4,9 +4,16 @@ namespace pdt256\elo;
 interface EloCalculatorInterface
 {
     /**
-     * @param int $scoreA
-     * @param int $scoreB
-     * @return EloScoreInterface
+     * @param ParticipantInterface $participantA
+     * @param ParticipantInterface $participantB
+     * @return int[]
      */
-    public function calculate($scoreA, $scoreB);
+    public function calculate(ParticipantInterface $participantA, ParticipantInterface $participantB);
+
+    /**
+     * @param ParticipantInterface $participantA
+     * @param ParticipantInterface $participantB
+     * @return float
+     */
+    public function getExpectedScores(ParticipantInterface $participantA, ParticipantInterface $participantB);
 }
