@@ -15,5 +15,5 @@ interface EloCalculatorInterface
      * @param ParticipantInterface $participantB
      * @return float
      */
-    public function getExpectedScores(ParticipantInterface $participantA, ParticipantInterface $participantB);
+    public function getOdds(ParticipantInterface $participantA, ParticipantInterface $participantB);
 }

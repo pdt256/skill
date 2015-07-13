@@ -20,8 +20,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1500, $ratings[1]);
     }
 
-
-    public function expectedScoreData()
+    public function getOddsData()
     {
         return [
             [1500, 1500, 0.5,      0.5     ], // Draw
@@ -33,9 +32,9 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider expectedScoreData
+     * @dataProvider getOddsData
      */
-    public function testExpectedScore($ratingA, $ratingB, $expectedScoreA, $expectedScoreB)
+    public function testGetOdds($ratingA, $ratingB, $expectedScoreA, $expectedScoreB)
     {
         $participantA = new Participant;
         $participantA->setRating($ratingA);
@@ -44,9 +43,9 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $participantB->setRating($ratingB);
 
         $eloCalculator = new EloCalculator;
-        $scores = $eloCalculator->getExpectedScores($participantA, $participantB);
+        $odds = $eloCalculator->getOdds($participantA, $participantB);
 
-        $this->assertEquals($expectedScoreA, $scores[0], null, FLOAT_DELTA);
-        $this->assertEquals($expectedScoreB, $scores[1], null, FLOAT_DELTA);
+        $this->assertEquals($expectedScoreA, $odds[0], null, FLOAT_DELTA);
+        $this->assertEquals($expectedScoreB, $odds[1], null, FLOAT_DELTA);
     }
 }

@@ -8,9 +8,9 @@ class EloCalculator implements EloCalculatorInterface
         return [1500, 1500];
     }
 
-    public function getExpectedScores(ParticipantInterface $participantA, ParticipantInterface $participantB)
+    public function getOdds(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
-        $expectedScoreA = $this->getExpectedScore($participantB->getRating(), $participantA->getRating());
+        $expectedScoreA = $this->getIndividualOdds($participantB->getRating(), $participantA->getRating());
         $expectedScoreB = 1 - $expectedScoreA;
 
         return [$expectedScoreA, $expectedScoreB];
@@ -21,7 +21,7 @@ class EloCalculator implements EloCalculatorInterface
      * @param int $ratingB
      * @return float
      */
-    private function getExpectedScore($ratingA, $ratingB)
+    private function getIndividualOdds($ratingA, $ratingB)
     {
         return (1 / (1 + (pow (10, ($ratingA - $ratingB) / 400))));
     }
