@@ -1,4 +1,14 @@
 {
+    "name": "pdt256/elo",
+    "description": "Elo Rating",
+    "license": "MIT",
+    "keywords": ["elo", "rating"],
+    "authors": [
+        {
+            "name": "Jamie Isaacs",
+            "email": "pdt256@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=5.6"
     },
