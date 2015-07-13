@@ -3,17 +3,33 @@ namespace pdt256\elo;
 
 class EloCalculator implements EloCalculatorInterface
 {
-    public function calculate(ParticipantInterface $participantA, ParticipantInterface $participantB)
+    private $kFactor = 32;
+
+    public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
-        return [1500, 1500];
+        list($probabilityA, $probabilityB) = $this->getProbability($participantA, $participantB);
+
+        return [
+            $this->getIndividualRating($participantA, $probabilityA),
+            $this->getIndividualRating($participantB, $probabilityB),
+        ];
     }
 
-    public function getOdds(ParticipantInterface $participantA, ParticipantInterface $participantB)
+    private function getIndividualRating(ParticipantInterface $participant, $expectedScore)
     {
-        $oddsA = $this->getIndividualOdds($participantB->getRating(), $participantA->getRating());
-        $oddsB = 1 - $oddsA;
+        $kFactor = $this->kFactor;
 
-        return [$oddsA, $oddsB];
+        $newRating = $participant->getRating() + ($kFactor * ($participant->getScore() - $expectedScore));
+
+        return (int) floor($newRating);
+    }
+
+    public function getProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)
+    {
+        $probabilityA = $this->getIndividualProbability($participantB->getRating(), $participantA->getRating());
+        $probabilityB = 1 - $probabilityA;
+
+        return [$probabilityA, $probabilityB];
     }
 
     /**
@@ -21,7 +37,7 @@ class EloCalculator implements EloCalculatorInterface
      * @param int $ratingB
      * @return float
      */
-    private function getIndividualOdds($ratingA, $ratingB)
+    private function getIndividualProbability($ratingA, $ratingB)
     {
         return (1 / (1 + (pow (10, ($ratingA - $ratingB) / 400))));
     }

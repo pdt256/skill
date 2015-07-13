@@ -13,7 +13,7 @@ interface ParticipantInterface
     public function getScore();
 
     /**
-     * @param int $score
+     * @param float $score
      */
     public function setScore($score);
 }

@@ -6,7 +6,7 @@ class Participant implements ParticipantInterface
     /** @var int */
     private $rating;
 
-    /** @var int */
+    /** @var float */
     private $score;
 
     public function __construct($rating = null, $score = null)
@@ -32,6 +32,6 @@ class Participant implements ParticipantInterface
 
     public function setScore($score)
     {
-        $this->score = (int) $score;
+        $this->score = (float) $score;
     }
 }

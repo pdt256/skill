@@ -3,24 +3,35 @@ namespace pdt256\elo;
 
 class EloCalculatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCalculateDraw()
+    public function getNewRatingsData()
     {
-        $participantA = new Participant;
-        $participantA->setRating(1500);
-        $participantA->setScore(21);
-
-        $participantB = new Participant;
-        $participantA->setRating(1500);
-        $participantB->setScore(21);
-
-        $eloCalculator = new EloCalculator;
-        $ratings = $eloCalculator->calculate($participantA, $participantB);
-
-        $this->assertSame(1500, $ratings[0]);
-        $this->assertSame(1500, $ratings[1]);
+        return [
+            [1500, 0.5, 1500, 0.5, 1500, 1500], // Draw
+            [2131, 1.0, 1584, 0.0, 2132, 1582], // Expert beats average player
+        ];
     }
 
-    public function getOddsData()
+    /**
+     * @dataProvider getNewRatingsData
+     */
+    public function testGetNewRatings($ratingA, $scoreA, $ratingB, $scoreB, $newRatingA, $newRatingB)
+    {
+        $participantA = new Participant;
+        $participantA->setRating($ratingA);
+        $participantA->setScore($scoreA);
+
+        $participantB = new Participant;
+        $participantB->setRating($ratingB);
+        $participantB->setScore($scoreB);
+
+        $eloCalculator = new EloCalculator;
+        $ratings = $eloCalculator->getNewRatings($participantA, $participantB);
+
+        $this->assertSame($newRatingA, $ratings[0]);
+        $this->assertSame($newRatingB, $ratings[1]);
+    }
+
+    public function getProbabilityData()
     {
         return [
             [1500, 1500, 0.5,      0.5     ], // Draw
@@ -32,9 +43,9 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getOddsData
+     * @dataProvider getProbabilityData
      */
-    public function testGetOdds($ratingA, $ratingB, $expectedOddsA, $expectedOddsB)
+    public function testGetProbability($ratingA, $ratingB, $expectedProbabilityA, $expectedProbabilityB)
     {
         $participantA = new Participant;
         $participantA->setRating($ratingA);
@@ -43,9 +54,9 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $participantB->setRating($ratingB);
 
         $eloCalculator = new EloCalculator;
-        $odds = $eloCalculator->getOdds($participantA, $participantB);
+        list($probabilityA, $probabilityB) = $eloCalculator->getProbability($participantA, $participantB);
 
-        $this->assertEquals($expectedOddsA, $odds[0], null, FLOAT_DELTA);
-        $this->assertEquals($expectedOddsB, $odds[1], null, FLOAT_DELTA);
+        $this->assertEquals($expectedProbabilityA, $probabilityA, null, FLOAT_DELTA);
+        $this->assertEquals($expectedProbabilityB, $probabilityB, null, FLOAT_DELTA);
     }
 }
