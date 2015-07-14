@@ -3,7 +3,13 @@ namespace pdt256\elo;
 
 class EloCalculator implements EloCalculatorInterface
 {
-    private $kFactor = 32;
+    /** @var KFactorInterface */
+    private $kFactor;
+
+    public function __construct(KFactorInterface $kFactor)
+    {
+        $this->kFactor = $kFactor;
+    }
 
     public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
@@ -17,11 +23,13 @@ class EloCalculator implements EloCalculatorInterface
 
     private function getIndividualRating(ParticipantInterface $participant, $expectedScore)
     {
-        $kFactor = $this->kFactor;
+        $kFactor = $this->kFactor->getValue($participant);
 
-        $newRating = $participant->getRating() + ($kFactor * ($participant->getScore() - $expectedScore));
+        $adjustment = (int) floor($kFactor * ($participant->getScore() - $expectedScore));
 
-        return (int) floor($newRating);
+        $newRating = $participant->getRating() + $adjustment;
+
+        return $newRating;
     }
 
     public function getProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)

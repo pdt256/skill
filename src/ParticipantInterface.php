@@ -3,6 +3,9 @@ namespace pdt256\elo;
 
 interface ParticipantInterface
 {
+    /**
+     * @return int
+     */
     public function getRating();
 
     /**
@@ -10,10 +13,23 @@ interface ParticipantInterface
      */
     public function setRating($rating);
 
+    /**
+     * @return float
+     */
     public function getScore();
 
     /**
      * @param float $score
      */
     public function setScore($score);
+
+    /**
+     * @return int
+     */
+    public function getTotalGames();
+
+    /**
+     * @param int $totalGames
+     */
+    public function setTotalGames($totalGames);
 }

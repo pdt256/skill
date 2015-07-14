@@ -9,10 +9,14 @@ class Participant implements ParticipantInterface
     /** @var float */
     private $score;
 
-    public function __construct($rating = null, $score = null)
+    /** @var int */
+    private $totalGames;
+
+    public function __construct($rating = null, $score = null, $totalGames = null)
     {
         $this->setRating($rating);
         $this->setScore($score);
+        $this->setTotalGames($totalGames);
     }
 
     public function getRating()
@@ -33,5 +37,15 @@ class Participant implements ParticipantInterface
     public function setScore($score)
     {
         $this->score = (float) $score;
+    }
+
+    public function getTotalGames()
+    {
+        return $this->totalGames;
+    }
+
+    public function setTotalGames($totalGames)
+    {
+        $this->totalGames = (int) $totalGames;
     }
 }
