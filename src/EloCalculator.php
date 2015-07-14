@@ -47,6 +47,6 @@ class EloCalculator implements EloCalculatorInterface
      */
     private function getIndividualProbability($ratingA, $ratingB)
     {
-        return (1 / (1 + (pow (10, ($ratingA - $ratingB) / 400))));
+        return (1 / (1 + (pow(10, ($ratingA - $ratingB) / 400))));
     }
 }

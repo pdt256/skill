@@ -32,8 +32,8 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $scoreA,
         $ratingB,
         $scoreB,
-        $newRatingA,
-        $newRatingB,
+        $expectedNewRatingA,
+        $expectedNewRatingB,
         KFactorInterface $kFactor
     ) {
         $participantA = new Participant;
@@ -45,10 +45,10 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $participantB->setScore($scoreB);
 
         $eloCalculator = new EloCalculator($kFactor);
-        $ratings = $eloCalculator->getNewRatings($participantA, $participantB);
+        list($newRatingA, $newRatingB) = $eloCalculator->getNewRatings($participantA, $participantB);
 
-        $this->assertSame($newRatingA, $ratings[0]);
-        $this->assertSame($newRatingB, $ratings[1]);
+        $this->assertSame($expectedNewRatingA, $newRatingA);
+        $this->assertSame($expectedNewRatingB, $newRatingB);
     }
 
     public function getProbabilityData()
