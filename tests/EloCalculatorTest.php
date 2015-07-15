@@ -9,18 +9,22 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $iccKFactor = new ICCKFactor();
         $fideKFactor = new FIDEKFactor();
 
+        define('WIN', 1);
+        define('LOSE', 0);
+        define('DRAW', 0.5);
+
         return [
-            [1500, 0.5, 1500, 0.5, 1500, 1500, $staticKFactor], // Draw
-            [2500, 1.0, 1000, 0.0, 2500,  999, $staticKFactor], // Expert beats Beginner
-            [1000, 1.0, 2500, 0.0, 1031, 2468, $staticKFactor], // Beginner beats Expert
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $staticKFactor], // Draw
+            [2500,  WIN, 1000, LOSE, 2500,  999, $staticKFactor], // Expert beats Beginner
+            [1000,  WIN, 2500, LOSE, 1031, 2468, $staticKFactor], // Beginner beats Expert
 
-            [1500, 0.5, 1500, 0.5, 1500, 1500, $iccKFactor], // Draw
-            [2500, 1.0, 1000, 0.0, 2500,  999, $iccKFactor], // Expert beats Beginner
-            [1000, 1.0, 2500, 0.0, 1031, 2484, $iccKFactor], // Beginner beats Expert
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $iccKFactor], // Draw
+            [2500,  WIN, 1000, LOSE, 2500,  999, $iccKFactor], // Expert beats Beginner
+            [1000,  WIN, 2500, LOSE, 1031, 2484, $iccKFactor], // Beginner beats Expert
 
-            [1500, 0.5, 1500, 0.5, 1500, 1500, $fideKFactor], // Draw
-            [2500, 1.0, 1000, 0.0, 2500,  999, $fideKFactor], // Expert beats Beginner
-            [1000, 1.0, 2500, 0.0, 1039, 2490, $fideKFactor], // Beginner beats Expert
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $fideKFactor], // Draw
+            [2500,  WIN, 1000, LOSE, 2500,  999, $fideKFactor], // Expert beats Beginner
+            [1000,  WIN, 2500, LOSE, 1039, 2490, $fideKFactor], // Beginner beats Expert
         ];
     }
 
