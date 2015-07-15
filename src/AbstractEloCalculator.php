@@ -3,24 +3,16 @@ namespace pdt256\elo;
 
 abstract class AbstractEloCalculator implements EloCalculatorInterface
 {
+    abstract protected function getParticipantKFactor(ParticipantInterface $participant);
+
     public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
         list($probabilityA, $probabilityB) = $this->getWinProbability($participantA, $participantB);
 
         return [
-            $this->getIndividualRating($participantA, $probabilityA),
-            $this->getIndividualRating($participantB, $probabilityB),
+            $participantA->getRating() + $this->getIndividualAdjustment($participantA, $probabilityA),
+            $participantB->getRating() + $this->getIndividualAdjustment($participantB, $probabilityB),
         ];
-    }
-
-    /**
-     * @param ParticipantInterface $participant
-     * @param float $probability
-     * @return int
-     */
-    protected function getIndividualRating(ParticipantInterface $participant, $probability)
-    {
-        return $participant->getRating() + $this->getIndividualAdjustment($participant, $probability);
     }
 
     /**
@@ -35,8 +27,6 @@ abstract class AbstractEloCalculator implements EloCalculatorInterface
 
         return $adjustment;
     }
-
-    abstract protected function getParticipantKFactor(ParticipantInterface $participant);
 
     public function getWinProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
