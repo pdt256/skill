@@ -31,6 +31,7 @@ class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
             [2500, LOSE, 1000,  WIN, 2484, 1032, $iccEloCalculator],
             [1000,  WIN, 2500, LOSE, 1039, 2490, $fideEloCalculator],
 
+            // ICC Example
             [2131,  WIN, 1584, LOSE, 2132, 1582, $eloCalculator],
             [2131,  WIN, 1584, LOSE, 2131, 1584, $iccEloCalculator],
             [1584, LOSE, 2131,  WIN, 1582, 2132, $iccEloCalculator],
