@@ -1,51 +1,21 @@
 <?php
 namespace pdt256\elo;
 
-class EloCalculator implements EloCalculatorInterface
+class EloCalculator extends AbstractEloCalculator
 {
-    /** @var KFactorInterface */
-    private $kFactorInterface;
-
-    public function __construct(KFactorInterface $kFactor)
-    {
-        $this->kFactorInterface = $kFactor;
-    }
-
-    public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)
-    {
-        list($probabilityA, $probabilityB) = $this->getWinProbability($participantA, $participantB);
-
-        return [
-            $this->getIndividualRating($participantA, $probabilityA),
-            $this->getIndividualRating($participantB, $probabilityB),
-        ];
-    }
-
-    private function getIndividualRating(ParticipantInterface $participant, $expectedScore)
-    {
-        $kFactor = $this->kFactorInterface->getValue($participant);
-
-        $adjustment = (int) floor($kFactor * ($participant->getScore() - $expectedScore));
-
-        $newRating = $participant->getRating() + $adjustment;
-        return $newRating;
-    }
-
-    public function getWinProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)
-    {
-        $probabilityA = $this->getIndividualProbability($participantB->getRating(), $participantA->getRating());
-        $probabilityB = 1 - $probabilityA;
-
-        return [$probabilityA, $probabilityB];
-    }
+    /** @var int */
+    protected $kFactor = 32;
 
     /**
-     * @param int $ratingA
-     * @param int $ratingB
-     * @return float
+     * @param int $kFactor
      */
-    private function getIndividualProbability($ratingA, $ratingB)
+    public function __construct($kFactor)
     {
-        return (1 / (1 + (pow(10, ($ratingA - $ratingB) / 400))));
+        $this->kFactor = $kFactor;
+    }
+
+    protected function getParticipantKFactor(ParticipantInterface $participant)
+    {
+        return $this->kFactor;
     }
 }

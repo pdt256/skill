@@ -1,58 +1,40 @@
 <?php
 namespace pdt256\elo;
 
-class EloCalculatorTest extends \PHPUnit_Framework_TestCase
+class EloCalculatorsTest extends \PHPUnit_Framework_TestCase
 {
-    public function getNewRatingsData()
+    public function testGetNewRatingsDraw()
     {
-        $staticKFactor = new StaticKFactor(32);
-        $iccKFactor = new ICCKFactor();
-        $fideKFactor = new FIDEKFactor();
-
-        define('WIN', 1);
-        define('LOSE', 0);
-        define('DRAW', 0.5);
-
-        return [
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $staticKFactor], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $staticKFactor], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1031, 2468, $staticKFactor], // Beginner beats Expert
-
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $iccKFactor], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $iccKFactor], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1031, 2484, $iccKFactor], // Beginner beats Expert
-
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $fideKFactor], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $fideKFactor], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1039, 2490, $fideKFactor], // Beginner beats Expert
-        ];
-    }
-
-    /**
-     * @dataProvider getNewRatingsData
-     */
-    public function testGetNewRatings(
-        $ratingA,
-        $scoreA,
-        $ratingB,
-        $scoreB,
-        $expectedNewRatingA,
-        $expectedNewRatingB,
-        KFactorInterface $kFactor
-    ) {
         $participantA = new Participant;
-        $participantA->setRating($ratingA);
-        $participantA->setScore($scoreA);
+        $participantA->setRating(1500);
+        $participantA->setScore(0.5);
 
         $participantB = new Participant;
-        $participantB->setRating($ratingB);
-        $participantB->setScore($scoreB);
+        $participantB->setRating(1500);
+        $participantB->setScore(0.5);
 
-        $eloCalculator = new EloCalculator($kFactor);
+        $eloCalculator = new EloCalculator(32);
         list($newRatingA, $newRatingB) = $eloCalculator->getNewRatings($participantA, $participantB);
 
-        $this->assertSame($expectedNewRatingA, $newRatingA);
-        $this->assertSame($expectedNewRatingB, $newRatingB);
+        $this->assertSame(1500, $newRatingA);
+        $this->assertSame(1500, $newRatingB);
+    }
+
+    public function testGetNewRatingsExpertBeatsBeginner()
+    {
+        $participantA = new Participant;
+        $participantA->setRating(2500);
+        $participantA->setScore(1);
+
+        $participantB = new Participant;
+        $participantB->setRating(1000);
+        $participantB->setScore(0);
+
+        $eloCalculator = new EloCalculator(32);
+        list($newRatingA, $newRatingB) = $eloCalculator->getNewRatings($participantA, $participantB);
+
+        $this->assertSame(2500, $newRatingA);
+        $this->assertSame(999, $newRatingB);
     }
 
     public function getWinProbabilityData()
@@ -77,7 +59,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $participantB = new Participant;
         $participantB->setRating($ratingB);
 
-        $eloCalculator = new EloCalculator(new StaticKFactor(32));
+        $eloCalculator = new EloCalculator(32);
         list($probabilityA, $probabilityB) = $eloCalculator->getWinProbability($participantA, $participantB);
 
         $this->assertEquals($expectedProbabilityA, $probabilityA, null, FLOAT_DELTA);

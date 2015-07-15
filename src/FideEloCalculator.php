@@ -1,9 +1,9 @@
 <?php
 namespace pdt256\elo;
 
-class FIDEKFactor implements KFactorInterface
+class FideEloCalculator extends AbstractEloCalculator
 {
-    public function getValue(ParticipantInterface $participant)
+    protected function getParticipantKFactor(ParticipantInterface $participant)
     {
         $rating = $participant->getRating();
 
