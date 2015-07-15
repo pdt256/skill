@@ -1,7 +1,7 @@
 <?php
 namespace pdt256\elo;
 
-class EloCalculatorsTest extends \PHPUnit_Framework_TestCase
+class EloCalculatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNewRatingsDraw()
     {
