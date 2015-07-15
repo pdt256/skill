@@ -15,5 +15,5 @@ interface EloCalculatorInterface
      * @param ParticipantInterface $participantB
      * @return float
      */
-    public function getProbability(ParticipantInterface $participantA, ParticipantInterface $participantB);
+    public function getWinProbability(ParticipantInterface $participantA, ParticipantInterface $participantB);
 }

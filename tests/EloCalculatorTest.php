@@ -55,7 +55,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expectedNewRatingB, $newRatingB);
     }
 
-    public function getProbabilityData()
+    public function getWinProbabilityData()
     {
         return [
             [1500, 1500, 0.5,      0.5     ], // Draw
@@ -67,9 +67,9 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getProbabilityData
+     * @dataProvider getWinProbabilityData
      */
-    public function testGetProbability($ratingA, $ratingB, $expectedProbabilityA, $expectedProbabilityB)
+    public function testGetWinProbability($ratingA, $ratingB, $expectedProbabilityA, $expectedProbabilityB)
     {
         $participantA = new Participant;
         $participantA->setRating($ratingA);
@@ -78,7 +78,7 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
         $participantB->setRating($ratingB);
 
         $eloCalculator = new EloCalculator(new StaticKFactor(32));
-        list($probabilityA, $probabilityB) = $eloCalculator->getProbability($participantA, $participantB);
+        list($probabilityA, $probabilityB) = $eloCalculator->getWinProbability($participantA, $participantB);
 
         $this->assertEquals($expectedProbabilityA, $probabilityA, null, FLOAT_DELTA);
         $this->assertEquals($expectedProbabilityB, $probabilityB, null, FLOAT_DELTA);

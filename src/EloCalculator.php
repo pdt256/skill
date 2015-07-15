@@ -13,7 +13,7 @@ class EloCalculator implements EloCalculatorInterface
 
     public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
-        list($probabilityA, $probabilityB) = $this->getProbability($participantA, $participantB);
+        list($probabilityA, $probabilityB) = $this->getWinProbability($participantA, $participantB);
 
         return [
             $this->getIndividualRating($participantA, $probabilityA),
@@ -28,11 +28,10 @@ class EloCalculator implements EloCalculatorInterface
         $adjustment = (int) floor($kFactor * ($participant->getScore() - $expectedScore));
 
         $newRating = $participant->getRating() + $adjustment;
-
         return $newRating;
     }
 
-    public function getProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)
+    public function getWinProbability(ParticipantInterface $participantA, ParticipantInterface $participantB)
     {
         $probabilityA = $this->getIndividualProbability($participantB->getRating(), $participantA->getRating());
         $probabilityB = 1 - $probabilityA;
