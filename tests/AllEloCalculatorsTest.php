@@ -1,6 +1,10 @@
 <?php
 namespace pdt256\elo;
 
+define('WIN', 1);
+define('LOSE', 0);
+define('DRAW', 0.5);
+
 class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
 {
     public function getNewRatingsData()
@@ -9,22 +13,21 @@ class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
         $iccEloCalculator = new IccEloCalculator();
         $fideEloCalculator = new FideEloCalculator();
 
-        define('WIN', 1);
-        define('LOSE', 0);
-        define('DRAW', 0.5);
-
         return [
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $eloCalculator], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $eloCalculator], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1031, 2468, $eloCalculator], // Beginner beats Expert
+            // Draw
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $eloCalculator],
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $iccEloCalculator],
+            [1500, DRAW, 1500, DRAW, 1500, 1500, $fideEloCalculator],
 
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $iccEloCalculator], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $iccEloCalculator], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1031, 2484, $iccEloCalculator], // Beginner beats Expert
+            // Expert beats Beginner
+            [2500,  WIN, 1000, LOSE, 2500,  999, $eloCalculator],
+            [2500,  WIN, 1000, LOSE, 2500,  999, $iccEloCalculator],
+            [2500,  WIN, 1000, LOSE, 2500,  999, $fideEloCalculator],
 
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $fideEloCalculator], // Draw
-            [2500,  WIN, 1000, LOSE, 2500,  999, $fideEloCalculator], // Expert beats Beginner
-            [1000,  WIN, 2500, LOSE, 1039, 2490, $fideEloCalculator], // Beginner beats Expert
+            // Beginner beats Expert
+            [1000,  WIN, 2500, LOSE, 1031, 2468, $eloCalculator],
+            [1000,  WIN, 2500, LOSE, 1031, 2484, $iccEloCalculator],
+            [1000,  WIN, 2500, LOSE, 1039, 2490, $fideEloCalculator],
         ];
     }
 
