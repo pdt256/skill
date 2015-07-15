@@ -21,13 +21,20 @@ class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
 
             // Expert beats Beginner
             [2500,  WIN, 1000, LOSE, 2500,  999, $eloCalculator],
-            [2500,  WIN, 1000, LOSE, 2500,  999, $iccEloCalculator],
+            [2500,  WIN, 1000, LOSE, 2500, 1000, $iccEloCalculator],
+            [1000, LOSE, 2500, WIN,   999, 2500, $iccEloCalculator],
             [2500,  WIN, 1000, LOSE, 2500,  999, $fideEloCalculator],
 
             // Beginner beats Expert
             [1000,  WIN, 2500, LOSE, 1031, 2468, $eloCalculator],
             [1000,  WIN, 2500, LOSE, 1031, 2484, $iccEloCalculator],
+            [2500, LOSE, 1000,  WIN, 2484, 1032, $iccEloCalculator],
             [1000,  WIN, 2500, LOSE, 1039, 2490, $fideEloCalculator],
+
+            [2131,  WIN, 1584, LOSE, 2132, 1582, $eloCalculator],
+            [2131,  WIN, 1584, LOSE, 2131, 1584, $iccEloCalculator],
+            [1584, LOSE, 2131,  WIN, 1582, 2132, $iccEloCalculator],
+            [2131,  WIN, 1584, LOSE, 2132, 1582, $fideEloCalculator],
         ];
     }
 

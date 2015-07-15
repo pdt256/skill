@@ -13,13 +13,27 @@ abstract class AbstractEloCalculator implements EloCalculatorInterface
         ];
     }
 
-    protected function getIndividualRating(ParticipantInterface $participant, $expectedScore)
+    /**
+     * @param ParticipantInterface $participant
+     * @param float $probability
+     * @return int
+     */
+    protected function getIndividualRating(ParticipantInterface $participant, $probability)
+    {
+        return $participant->getRating() + $this->getIndividualAdjustment($participant, $probability);
+    }
+
+    /**
+     * @param ParticipantInterface $participant
+     * @param float $probability
+     * @return int
+     */
+    protected function getIndividualAdjustment(ParticipantInterface $participant, $probability)
     {
         $kFactor = $this->getParticipantKFactor($participant);
-        $adjustment = (int) floor($kFactor * ($participant->getScore() - $expectedScore));
+        $adjustment = (int) floor($kFactor * ($participant->getScore() - $probability));
 
-        $newRating = $participant->getRating() + $adjustment;
-        return $newRating;
+        return $adjustment;
     }
 
     abstract protected function getParticipantKFactor(ParticipantInterface $participant);
