@@ -15,27 +15,27 @@ class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
 
         return [
             // Draw
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $eloCalculator],
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $iccEloCalculator],
-            [1500, DRAW, 1500, DRAW, 1500, 1500, $fideEloCalculator],
+            [1500, 1500, DRAW, 1500, 1500, $eloCalculator],
+            [1500, 1500, DRAW, 1500, 1500, $iccEloCalculator],
+            [1500, 1500, DRAW, 1500, 1500, $fideEloCalculator],
 
             // Expert beats Beginner
-            [2500,  WIN, 1000, LOSE, 2500,  999, $eloCalculator],
-            [2500,  WIN, 1000, LOSE, 2500, 1000, $iccEloCalculator],
-            [1000, LOSE, 2500, WIN,   999, 2500, $iccEloCalculator],
-            [2500,  WIN, 1000, LOSE, 2500,  999, $fideEloCalculator],
+            [2500, 1000,  WIN, 2500,  999, $eloCalculator],
+            [2500, 1000,  WIN, 2500, 1000, $iccEloCalculator],
+            [1000, 2500, LOSE,  999, 2500, $iccEloCalculator],
+            [2500, 1000,  WIN, 2500,  999, $fideEloCalculator],
 
             // Beginner beats Expert
-            [1000,  WIN, 2500, LOSE, 1031, 2468, $eloCalculator],
-            [1000,  WIN, 2500, LOSE, 1031, 2484, $iccEloCalculator],
-            [2500, LOSE, 1000,  WIN, 2484, 1032, $iccEloCalculator],
-            [1000,  WIN, 2500, LOSE, 1039, 2490, $fideEloCalculator],
+            [1000, 2500,  WIN, 1031, 2468, $eloCalculator],
+            [1000, 2500,  WIN, 1031, 2484, $iccEloCalculator],
+            [2500, 1000, LOSE, 2484, 1032, $iccEloCalculator],
+            [1000, 2500,  WIN, 1039, 2490, $fideEloCalculator],
 
             // ICC Example
-            [2131,  WIN, 1584, LOSE, 2132, 1582, $eloCalculator],
-            [2131,  WIN, 1584, LOSE, 2131, 1584, $iccEloCalculator],
-            [1584, LOSE, 2131,  WIN, 1582, 2132, $iccEloCalculator],
-            [2131,  WIN, 1584, LOSE, 2132, 1582, $fideEloCalculator],
+            [2131, 1584,  WIN, 2132, 1582, $eloCalculator],
+            [2131, 1584,  WIN, 2131, 1584, $iccEloCalculator],
+            [1584, 2131, LOSE, 1582, 2132, $iccEloCalculator],
+            [2131, 1584,  WIN, 2132, 1582, $fideEloCalculator],
         ];
     }
 
@@ -44,13 +44,23 @@ class AllEloCalculatorsTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNewRatings(
         $ratingA,
-        $scoreA,
         $ratingB,
-        $scoreB,
+        $result,
         $expectedNewRatingA,
         $expectedNewRatingB,
         EloCalculatorInterface $eloCalculator
     ) {
+        if ($result === WIN) {
+            $scoreA = WIN;
+            $scoreB = LOSE;
+        } elseif ($result === LOSE) {
+            $scoreA = LOSE;
+            $scoreB = WIN;
+        } else {
+            $scoreA = DRAW;
+            $scoreB = DRAW;
+        }
+
         $participantA = new Participant;
         $participantA->setRating($ratingA);
         $participantA->setScore($scoreA);
