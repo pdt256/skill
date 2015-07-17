@@ -18,12 +18,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-          "pdt256\\elo\\tests\\": "tests"
+          "pdt256\\skill\\tests\\": "tests"
         }
     },
     "autoload": {
         "psr-4": {
-            "pdt256\\elo\\": "src"
+            "pdt256\\skill\\": "src"
         }
     }
 }

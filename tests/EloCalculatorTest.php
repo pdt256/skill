@@ -1,5 +1,5 @@
 <?php
-namespace pdt256\elo;
+namespace pdt256\skill;
 
 class EloCalculatorTest extends \PHPUnit_Framework_TestCase
 {

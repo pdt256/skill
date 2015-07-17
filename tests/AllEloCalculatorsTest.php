@@ -1,5 +1,5 @@
 <?php
-namespace pdt256\elo;
+namespace pdt256\skill;
 
 define('WIN', 1);
 define('LOSE', 0);
