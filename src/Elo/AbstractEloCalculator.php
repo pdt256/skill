@@ -5,6 +5,10 @@ use pdt256\skill\ParticipantInterface;
 
 abstract class AbstractEloCalculator implements EloCalculatorInterface
 {
+    const WIN = 1;
+    const LOSE = 0;
+    const DRAW = 0.5;
+
     abstract protected function getParticipantKFactor(ParticipantInterface $participant);
 
     public function getNewRatings(ParticipantInterface $participantA, ParticipantInterface $participantB)

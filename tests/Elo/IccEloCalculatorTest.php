@@ -9,11 +9,11 @@ class IccEloCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $white = new Participant;
         $white->setRating(1500);
-        $white->setScore(EloCalculator::DRAW);
+        $white->setScore(AbstractEloCalculator::DRAW);
 
         $black = new Participant;
         $black->setRating(1500);
-        $black->setScore(EloCalculator::DRAW);
+        $black->setScore(AbstractEloCalculator::DRAW);
 
         $eloCalculator = new IccEloCalculator;
         list($newRatingWhite, $newRatingBlack) = $eloCalculator->getNewRatings($white, $black);
@@ -26,11 +26,11 @@ class IccEloCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $white = new Participant;
         $white->setRating(2500);
-        $white->setScore(EloCalculator::WIN);
+        $white->setScore(AbstractEloCalculator::WIN);
 
         $black = new Participant;
         $black->setRating(1000);
-        $black->setScore(EloCalculator::LOSE);
+        $black->setScore(AbstractEloCalculator::LOSE);
 
         $eloCalculator = new IccEloCalculator;
         list($newRatingWhite, $newRatingBlack) = $eloCalculator->getNewRatings($white, $black);
@@ -43,11 +43,11 @@ class IccEloCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $white = new Participant;
         $white->setRating(1000);
-        $white->setScore(EloCalculator::LOSE);
+        $white->setScore(AbstractEloCalculator::LOSE);
 
         $black = new Participant;
         $black->setRating(2500);
-        $black->setScore(EloCalculator::WIN);
+        $black->setScore(AbstractEloCalculator::WIN);
 
         $eloCalculator = new IccEloCalculator;
         list($newRatingWhite, $newRatingBlack) = $eloCalculator->getNewRatings($white, $black);

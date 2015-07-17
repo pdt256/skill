@@ -9,11 +9,11 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $participantA = new Participant;
         $participantA->setRating(1500);
-        $participantA->setScore(EloCalculator::DRAW);
+        $participantA->setScore(AbstractEloCalculator::DRAW);
 
         $participantB = new Participant;
         $participantB->setRating(1500);
-        $participantB->setScore(EloCalculator::DRAW);
+        $participantB->setScore(AbstractEloCalculator::DRAW);
 
         $eloCalculator = new EloCalculator(32);
         list($newRatingA, $newRatingB) = $eloCalculator->getNewRatings($participantA, $participantB);
@@ -26,11 +26,11 @@ class EloCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $participantA = new Participant;
         $participantA->setRating(2500);
-        $participantA->setScore(EloCalculator::WIN);
+        $participantA->setScore(AbstractEloCalculator::WIN);
 
         $participantB = new Participant;
         $participantB->setRating(1000);
-        $participantB->setScore(EloCalculator::LOSE);
+        $participantB->setScore(AbstractEloCalculator::LOSE);
 
         $eloCalculator = new EloCalculator(32);
         list($newRatingA, $newRatingB) = $eloCalculator->getNewRatings($participantA, $participantB);
