@@ -1,8 +1,8 @@
 {
-    "name": "pdt256/elo",
-    "description": "Elo Rating",
+    "name": "pdt256/skill",
+    "description": "Skill Calculator",
     "license": "MIT",
-    "keywords": ["elo", "rating"],
+    "keywords": ["skill", "elo", "rating"],
     "authors": [
         {
             "name": "Jamie Isaacs",
