@@ -5,6 +5,10 @@ use pdt256\skill\ParticipantInterface;
 
 class EloCalculator extends AbstractEloCalculator
 {
+    const WIN = 1;
+    const LOSE = 0;
+    const DRAW = 0.5;
+
     /** @var int */
     protected $kFactor = 32;
 
