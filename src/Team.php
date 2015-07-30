@@ -21,6 +21,7 @@ class Team implements TeamInterface
 
     public function addParticipant(ParticipantInterface $participant)
     {
+        $participant->setScore($this->getScore());
         $this->participants[] = $participant;
     }
 
