@@ -32,12 +32,7 @@ func (c *duelingCalculator) getFirstTeamNewRatings(ratingsA []int, ratingsB []in
 func (c *duelingCalculator) getAverageRatingAgainstOpponentRatings(rating int, opponentRatings []int, scoreA float64, scoreB float64) int {
 	ratings := c.getRatingsAgainstOpponentRatings(rating, opponentRatings, scoreA, scoreB)
 
-	ratingsSum := 0
-	for _, value := range ratings {
-		ratingsSum += value
-	}
-
-	return ratingsSum / len(ratings)
+	return sumInt(ratings) / len(ratings)
 }
 
 func (c *duelingCalculator) getRatingsAgainstOpponentRatings(rating int, opponentRatings []int, scoreA float64, scoreB float64) []int {
