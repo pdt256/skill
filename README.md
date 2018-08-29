@@ -24,7 +24,7 @@ go test ./...
 ### CLI Application
 
 ```
-$ go run cmd/cli/elo/main.go -ratingA 1600 -ratingB 2400 -winningPlayer A
+$ go run cmd/cli/elo/main.go -kValue 32 -ratingA 1600 -ratingB 2400 -winningPlayer A
 1631,2368
 ```
 

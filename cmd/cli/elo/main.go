@@ -11,6 +11,12 @@ import (
 func main() {
 	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.PanicOnError)
 
+	kValue := flag.Int(
+		"kValue",
+		32,
+		"k value",
+	)
+
 	ratingA := flag.Int(
 		"ratingA",
 		1500,
@@ -40,7 +46,7 @@ func main() {
 		scoreB = 1.0
 	}
 
-	calculator := skill.NewEloCalculator(32)
+	calculator := skill.NewEloCalculator(*kValue)
 	newRatingA, newRatingB := calculator.GetNewRatings(*ratingA, *ratingB, scoreA, scoreB)
 
 	fmt.Printf("%d,%d\n", newRatingA, newRatingB)
