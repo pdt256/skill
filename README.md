@@ -1,6 +1,8 @@
 Skill Calculator
 ================
 
+[![Build Status](https://travis-ci.org/pdt256/skill.svg?branch=master)](https://travis-ci.org/pdt256/skill)
+
 Calculate Skills using various methods.
 
 ## Setup
