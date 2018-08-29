@@ -10,7 +10,7 @@ Calculate Skills using various methods.
 ### Install Dependencies
 
 ```
-go get -t ./...
+go get ./...
 ```
 
 ## Unit Tests
