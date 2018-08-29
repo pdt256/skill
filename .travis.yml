@@ -5,8 +5,11 @@ go:
 
 sudo: false
 
+env:
+  - GO111MODULE=on
+
 install:
-  - GO111MODULE=on go get ./...
+  - go get ./...
 
 script:
-  - GO111MODULE=on go test ./...
+  - go test ./...
