@@ -1,32 +1,50 @@
 Skill Calculator
 ================
+[![Test Coverage](http://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://codeclimate.com/github/pdt256/skill)
+[![Build Status](https://travis-ci.org/pdt256/skill.svg?branch=master)](https://travis-ci.org/pdt256/skill)
+[![Downloads](https://img.shields.io/packagist/dt/pdt256/skill.svg)](https://packagist.org/packages/pdt256/skill)
+[![License](https://img.shields.io/packagist/l/pdt256/skill.svg)](https://github.com/pdt256/skill/blob/master/LICENSE.txt)
 
-Calculate Skills using various methods.
+## Introduction
 
-## Setup
+All code (including tests) conform to the PSR-2 coding standards. The namespace and autoloader
+are using the PSR-4 standard.
 
-### Install Dependencies
+## Installation
 
-```
-go get -t ./...
-```
+Add the following lines to your ``composer.json`` file.
 
-## Unit Tests
-
-```
-go test ./...
-```
-
-## Run
-
-### CLI Application
-
-```
-go run cmd/cli/main.go
+```JSON
+{
+    "require": {
+        "pdt256/skill": "dev-master"
+    }
+}
 ```
 
+```
+   composer install
+```
 
-## License
+## Unit Tests:
+
+<pre>
+    vendor/bin/phpunit
+</pre>
+
+### With Code Coverage:
+
+<pre>
+    vendor/bin/phpunit --coverage-text --coverage-html coverage_report
+</pre>
+
+## Run Coding Standards Test:
+
+<pre>
+    vendor/bin/phpcs --standard=PSR2 src/ tests/
+</pre>
+
+### License
 
 The MIT License (MIT)
 

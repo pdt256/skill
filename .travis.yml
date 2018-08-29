@@ -1,13 +1,13 @@
-language: php
-php:
-  - 5.6
-  
+language: go
+
+go:
+  - "1.11.x"
+
 sudo: false
 
-before_script:
-  - composer self-update
-  - composer install
+install:
+  - go version
+  - go get ./...
 
 script:
-  - vendor/bin/phpcs --standard=PSR2 src/ tests/
-  - vendor/bin/phpunit -c phpunit.xml
+  - go test ./...
