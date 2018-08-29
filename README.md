@@ -24,9 +24,19 @@ go test ./...
 ### CLI Application
 
 ```
-go run cmd/cli/main.go
+$ go run cmd/cli/elo/main.go -ratingA 1600 -ratingB 2400 -winningPlayer A
+1631,2368
 ```
 
+```
+$ go run cmd/cli/icc/main.go -ratingA 1600 -ratingB 2400 -winningPlayer A
+1631,2376
+```
+
+```
+$ go run cmd/cli/fide/main.go -ratingA 1600 -ratingB 2400 -totalGamesA 50 -totalGamesB 50 -winningPlayer A
+1619,2390
+```
 
 ## License
 
