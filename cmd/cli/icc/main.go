@@ -11,23 +11,10 @@ import (
 func main() {
 	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.PanicOnError)
 
-	ratingA := flag.Int(
-		"ratingA",
-		1500,
-		"player A rating",
-	)
+	ratingA := flag.Int("ratingA", 1500, "player A rating")
+	ratingB := flag.Int("ratingB", 1500, "player B rating")
+	winningPlayer := flag.String("winningPlayer", "A", "winning player")
 
-	ratingB := flag.Int(
-		"ratingB",
-		1500,
-		"player B rating",
-	)
-
-	winningPlayer := flag.String(
-		"winningPlayer",
-		"A",
-		"winning player",
-	)
 	flag.Parse()
 
 	var scoreA, scoreB float64
