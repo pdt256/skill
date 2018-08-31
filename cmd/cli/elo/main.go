@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.PanicOnError)
+	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	kValue := flag.Int("kValue", 32, "k value")
 	ratingA := flag.Int("ratingA", 1500, "player A rating")

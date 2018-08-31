@@ -23,21 +23,34 @@ go test ./...
 
 ### CLI Application
 
+
+#### Elo Rankings
+
 ```
 $ go run cmd/cli/elo/main.go -kValue 32 -ratingA 1600 -ratingB 2400 -winningPlayer A
 1631,2368
 ```
+
+#### Icc Rankings
 
 ```
 $ go run cmd/cli/icc/main.go -ratingA 1600 -ratingB 2400 -winningPlayer A
 1631,2376
 ```
 
+#### Fide Rankings
+
 ```
 $ go run cmd/cli/fide/main.go -ratingA 1600 -ratingB 2400 -totalGamesA 50 -totalGamesB 50 -winningPlayer A
 1619,2390
 ```
 
+#### Team Rankings w/ Dueling Elo Calculator
+
+```
+$ go run cmd/cli/team/main.go -ratingsA 1400,1400 -ratingsB 1600,1600 -winningTeam A
+[1424 1424],[1575 1575]
+```
 ## License
 
 The MIT License (MIT)
