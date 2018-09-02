@@ -85,6 +85,13 @@ $ go run cmd/cli/team-skill/main.go -icc -ratingsA 1400,1600 -ratingsB 2400,2100
 [1431 1630],[2376 2076]
 ```
 
+#### Team Rankings with 3 players
+
+```
+$ go run cmd/cli/team-skill/main.go -elo -ratingsA 1400,1500,1600 -ratingsB 2100,2000,1900 -winningTeam A
+[1430 1530 1628],[2068 1969 1870]
+```
+
 ## License
 
 The MIT License (MIT)
