@@ -74,15 +74,15 @@ Usage of team-skill:
 #### Team Rankings w/ Dueling Calculator using Elo
 
 ```
-$ go run cmd/cli/team-skill/main.go -elo -ratingsA 1600,1600 -ratingsB 2400,2400 -winningTeam A
-[1631 1631],[2368 2368]
+$ go run cmd/cli/team-skill/main.go -elo -ratingsA 1400,1600 -ratingsB 2400,2100 -winningTeam A
+[1431 1630],[2368 2068]
 ```
 
 #### Team Rankings w/ Dueling Calculator using Icc
 
 ```
-$ go run cmd/cli/team-skill/main.go -icc -ratingsA 1600,1600 -ratingsB 2400,2400 -winningTeam A
-[1631 1631],[2376 2376]
+$ go run cmd/cli/team-skill/main.go -icc -ratingsA 1400,1600 -ratingsB 2400,2100 -winningTeam A
+[1431 1630],[2376 2076]
 ```
 
 ## License
