@@ -21,36 +21,70 @@ go test ./...
 
 ## Run
 
-### CLI Application
+### Skill CLI Application
 
+```
+$ go run cmd/cli/skill/main.go --help
+Usage of skill:
+  -elo=false: elo rating system (default)
+  -fide=false: fide rating system
+  -icc=false: icc rating system
+  -kValue=32: k value
+  -ratingA=1500: player A rating
+  -ratingB=1500: player B rating
+  -totalGamesA=0: total games played by A (fide only)
+  -totalGamesB=0: total games played by B (fide only)
+  -winningPlayer="A": winning player
+```
 
 #### Elo Rankings
 
 ```
-$ go run cmd/cli/elo/main.go -kValue 32 -ratingA 1600 -ratingB 2400 -winningPlayer A
+$ go run cmd/cli/skill/main.go -elo -kValue 32 -ratingA 1600 -ratingB 2400 -winningPlayer A
 1631,2368
 ```
 
 #### Icc Rankings
 
 ```
-$ go run cmd/cli/icc/main.go -ratingA 1600 -ratingB 2400 -winningPlayer A
+$ go run cmd/cli/skill/main.go -icc -ratingA 1600 -ratingB 2400 -winningPlayer A
 1631,2376
 ```
 
 #### Fide Rankings
 
 ```
-$ go run cmd/cli/fide/main.go -ratingA 1600 -ratingB 2400 -totalGamesA 50 -totalGamesB 50 -winningPlayer A
+$ go run cmd/cli/skill/main.go -fide -ratingA 1600 -ratingB 2400 -totalGamesA 50 -totalGamesB 50 -winningPlayer A
 1619,2390
 ```
 
-#### Team Rankings w/ Dueling Elo Calculator
+### Team Skill CLI Application
 
 ```
-$ go run cmd/cli/team/main.go -ratingsA 1400,1400 -ratingsB 1600,1600 -winningTeam A
-[1424 1424],[1575 1575]
+$ go run cmd/cli/team-skill/main.go --help
+Usage of team-skill:
+  -elo=false: elo rating system (default)
+  -icc=false: icc rating system
+  -kValue=32: k value
+  -ratingsA="1500,1500": team A ratings (comma separated)
+  -ratingsB="1500,1500": team B ratings (comma separated)
+  -winningTeam="A": winning team
 ```
+
+#### Team Rankings w/ Dueling Calculator using Elo
+
+```
+$ go run cmd/cli/team-skill/main.go -elo -ratingsA 1600,1600 -ratingsB 2400,2400 -winningTeam A
+[1631 1631],[2368 2368]
+```
+
+#### Team Rankings w/ Dueling Calculator using Icc
+
+```
+$ go run cmd/cli/team-skill/main.go -icc -ratingsA 1600,1600 -ratingsB 2400,2400 -winningTeam A
+[1631 1631],[2376 2376]
+```
+
 ## License
 
 The MIT License (MIT)
