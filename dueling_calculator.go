@@ -4,6 +4,8 @@ type duelingCalculator struct {
 	ratingCalculator RatingCalculator
 }
 
+var _ DuelingCalculator = (*duelingCalculator)(nil)
+
 func NewDuelingCalculator(ratingCalculator RatingCalculator) *duelingCalculator {
 	return &duelingCalculator{
 		ratingCalculator: ratingCalculator,

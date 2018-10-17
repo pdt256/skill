@@ -6,6 +6,8 @@ import (
 
 type fideEloCalculator struct{}
 
+var _ HistoricalRatingCalculator = (*fideEloCalculator)(nil)
+
 // https://ratings.fide.com/calculator_rtd.phtml
 func NewFideEloCalculator() *fideEloCalculator {
 	return &fideEloCalculator{}

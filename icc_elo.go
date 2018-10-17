@@ -6,6 +6,8 @@ import (
 
 type iccEloCalculator struct{}
 
+var _ RatingCalculator = (*iccEloCalculator)(nil)
+
 // https://www.chessclub.com/help/ratings
 func NewIccEloCalculator() *iccEloCalculator {
 	return &iccEloCalculator{}

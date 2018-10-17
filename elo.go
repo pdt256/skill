@@ -8,6 +8,8 @@ type eloCalculator struct {
 	kFactor float64
 }
 
+var _ RatingCalculator = (*eloCalculator)(nil)
+
 // https://en.wikipedia.org/wiki/Elo_rating_system
 func NewEloCalculator(kFactor int) *eloCalculator {
 	return &eloCalculator{

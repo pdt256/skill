@@ -12,6 +12,14 @@ type RatingCalculator interface {
 		scoreB float64) (nextRatingA int, nextRatingB int)
 }
 
+type DuelingCalculator interface {
+	GetNewRatings(
+		ratingsA []int,
+		ratingsB []int,
+		scoreA float64,
+		scoreB float64) (nextRatingsA []int, nextRatingsB []int)
+}
+
 type HistoricalRatingCalculator interface {
 	GetNewRatings(
 		ratingA int,
