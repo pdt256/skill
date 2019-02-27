@@ -1,10 +1,12 @@
 package skill_test
 
 import (
+	"fmt"
 	"testing"
 
-	"github.com/pdt256/skill"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/pdt256/skill"
 )
 
 func Test_Elo_GetNewRatings(t *testing.T) {
@@ -45,4 +47,16 @@ func Test_Elo_GetNewRatings(t *testing.T) {
 			assert.Equal(t, tt.expectedNewRatingB, nextRatingB)
 		})
 	}
+}
+
+func ExampleGetNewRatings() {
+	kFactor := 32
+	elo := skill.NewEloCalculator(kFactor)
+	fmt.Println(elo.GetNewRatings(1500, 1500, 0.5, 0.5))
+	fmt.Println(elo.GetNewRatings(1600, 1400, 1.0, 0.0))
+	fmt.Println(elo.GetNewRatings(1600, 1400, 0.0, 1.0))
+	// Output:
+	// 1500 1500
+	// 1607 1392
+	// 1575 1424
 }

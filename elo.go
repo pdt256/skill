@@ -10,6 +10,7 @@ type eloCalculator struct {
 
 var _ RatingCalculator = (*eloCalculator)(nil)
 
+// NewEloCalculator returns a RatingCalculator using the ELO rating system.
 // https://en.wikipedia.org/wiki/Elo_rating_system
 func NewEloCalculator(kFactor int) *eloCalculator {
 	return &eloCalculator{
