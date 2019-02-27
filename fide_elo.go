@@ -8,6 +8,7 @@ type fideEloCalculator struct{}
 
 var _ HistoricalRatingCalculator = (*fideEloCalculator)(nil)
 
+// NewFideEloCalculator returns a RatingCalculator using the FIDE chess rating system.
 // https://ratings.fide.com/calculator_rtd.phtml
 func NewFideEloCalculator() *fideEloCalculator {
 	return &fideEloCalculator{}

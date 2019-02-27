@@ -49,7 +49,7 @@ func Test_Elo_GetNewRatings(t *testing.T) {
 	}
 }
 
-func ExampleGetNewRatings() {
+func ExampleEloGetNewRatings() {
 	kFactor := 32
 	elo := skill.NewEloCalculator(kFactor)
 	fmt.Println(elo.GetNewRatings(1500, 1500, 0.5, 0.5))
