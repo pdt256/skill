@@ -53,9 +53,11 @@ func ExampleFideEloGetNewRatings() {
 	fideElo := skill.NewFideEloCalculator()
 	fmt.Println(fideElo.GetNewRatings(1500, 1500, 0, 0, 0.5, 0.5))
 	fmt.Println(fideElo.GetNewRatings(1600, 1400, 0, 0, 1.0, 0.0))
+	fmt.Println(fideElo.GetNewRatings(1600, 1400, 0, 0, 0.0, 1.0))
 	fmt.Println(fideElo.GetNewRatings(1600, 1400, 30, 30, 1.0, 0.0))
 	// Output:
 	// 1500 1500
 	// 1609 1390
+	// 1569 1430
 	// 1604 1395
 }

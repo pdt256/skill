@@ -8,6 +8,7 @@ type iccEloCalculator struct{}
 
 var _ RatingCalculator = (*iccEloCalculator)(nil)
 
+// NewIccEloCalculator returns a RatingCalculator using the ICC chess rating system.
 // https://www.chessclub.com/help/ratings
 func NewIccEloCalculator() *iccEloCalculator {
 	return &iccEloCalculator{}

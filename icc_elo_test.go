@@ -1,10 +1,12 @@
 package skill_test
 
 import (
+	"fmt"
 	"testing"
 
-	"github.com/pdt256/skill"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/pdt256/skill"
 )
 
 func Test_IccElo_GetNewRatings(t *testing.T) {
@@ -41,4 +43,15 @@ func Test_IccElo_GetNewRatings(t *testing.T) {
 			assert.Equal(t, tt.expectedNewRatingB, nextRatingB)
 		})
 	}
+}
+
+func ExampleIccEloGetNewRatings() {
+	iccElo := skill.NewIccEloCalculator()
+	fmt.Println(iccElo.GetNewRatings(1500, 1500, 0.5, 0.5))
+	fmt.Println(iccElo.GetNewRatings(1600, 1400, 1.0, 0.0))
+	fmt.Println(iccElo.GetNewRatings(1600, 1400, 0.0, 1.0))
+	// Output:
+	// 1500 1500
+	// 1607 1393
+	// 1575 1425
 }
