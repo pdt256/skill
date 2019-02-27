@@ -1,3 +1,5 @@
+// Package skill provides rating algorithms to calculate the relative strength
+// of two player games.
 package skill
 
 import (
@@ -30,6 +32,9 @@ type HistoricalRatingCalculator interface {
 		scoreB float64) (nextRatingA int, nextRatingB int)
 }
 
+// GetWinProbability returns the win probability for each provided rating.
+// It uses the IECC rating algorithm probability:
+// Probability = 1 / (1 + (10 ^ -(Rating Difference / 400)))
 func GetWinProbability(ratingA int, ratingB int) (float64, float64) {
 	probabilityA := getIndividualProbability(ratingB, ratingA)
 	probabilityB := 1.0 - probabilityA
