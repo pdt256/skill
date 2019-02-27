@@ -6,6 +6,8 @@ type duelingCalculator struct {
 
 var _ DuelingCalculator = (*duelingCalculator)(nil)
 
+// NewDuelingCalculator returns a DuelingCalculator to calculate team ratings using
+// any RatingCalculator algorithm.
 func NewDuelingCalculator(ratingCalculator RatingCalculator) *duelingCalculator {
 	return &duelingCalculator{
 		ratingCalculator: ratingCalculator,

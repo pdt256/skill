@@ -49,7 +49,7 @@ func Test_FideElo_GetNewRatings(t *testing.T) {
 	}
 }
 
-func ExampleFideEloGetNewRatings() {
+func ExampleFideEloCalculator_GetNewRatings() {
 	fideElo := skill.NewFideEloCalculator()
 	fmt.Println(fideElo.GetNewRatings(1500, 1500, 0, 0, 0.5, 0.5))
 	fmt.Println(fideElo.GetNewRatings(1600, 1400, 0, 0, 1.0, 0.0))

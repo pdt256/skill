@@ -1,5 +1,5 @@
 // Package skill provides rating algorithms to calculate the relative strength
-// of two player zero-sum games.
+// of two player or multiplayer zero-sum games.
 package skill
 
 import (

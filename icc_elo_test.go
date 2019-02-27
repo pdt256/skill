@@ -45,7 +45,7 @@ func Test_IccElo_GetNewRatings(t *testing.T) {
 	}
 }
 
-func ExampleIccEloGetNewRatings() {
+func ExampleIccEloCalculator_GetNewRatings() {
 	iccElo := skill.NewIccEloCalculator()
 	fmt.Println(iccElo.GetNewRatings(1500, 1500, 0.5, 0.5))
 	fmt.Println(iccElo.GetNewRatings(1600, 1400, 1.0, 0.0))
